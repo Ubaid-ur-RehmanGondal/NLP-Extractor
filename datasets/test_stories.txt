@@ -1,0 +1,34 @@
+US-001: Create New Project
+As a project manager, I want to create a new project with custom settings so that I can organize work according to project requirements.
+Acceptance Criteria:
+- Verify that the "Create Project" button opens a configuration modal.
+- Ensure custom settings include project name, start date, and team selection.
+- Confirm that the project is saved to the database upon clicking "Save".
+
+US-002: Assign Team Members
+As a project manager, I want to assign team members to projects so that they can start contributing to project tasks.
+Acceptance Criteria:
+- Verify that a list of available team members is displayed.
+- Ensure multiple members can be selected at once.
+- Confirm that assigned members receive an email notification.
+
+US-003: Create Task
+As a team member, I want to create tasks with clear descriptions so that everyone understands what needs to be done.
+Acceptance Criteria:
+- Verify that the task creation form includes a rich-text description field.
+- Ensure images can be embedded in the description.
+- Confirm that the task cannot be saved without a title.
+
+US-004: Set Task Priority
+As a team member, I want to set task priorities (high, medium, low) so that the team can focus on urgent work first.
+Acceptance Criteria:
+- Verify that a priority flag can be toggled between High, Medium, and Low.
+- Ensure High priority tasks are visually distinct (e.g., red color).
+- Confirm that tasks can be sorted by priority in the list view.
+
+US-005: Log Work Hours
+As a team member, I want to log time spent on tasks so that I can track effort and improve estimation accuracy.
+Acceptance Criteria:
+- Verify that a timer can be started and stopped on a task.
+- Ensure manual time entry is also supported.
+- Confirm that total time spent is displayed against the estimate.
