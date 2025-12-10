@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NLP User Story Extractor | Production Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>NLP User Story Extractor</h1>
+            <p class="subtitle">Professional-grade tool for software test automation</p>
+        </header>
+
+        <!-- Main Application -->
+        <main class="app-main">
+            <!-- Input Section -->
+            <section class="input-section">
+                <div class="input-methods">
+                    <!-- File Upload -->
+                    <div class="upload-zone" id="uploadZone">
+                        <div class="upload-content">
+                            <div class="upload-icon">📄</div>
+                            <h3>Upload Document</h3>
+                            <p>Drop TXT, PDF, or DOCX files here or click to browse</p>
+                            <input type="file" id="fileInput" accept=".txt,.pdf,.docx" multiple>
+                            <button class="btn btn--secondary" onclick="document.getElementById('fileInput').click()">Browse Files</button>
+                        </div>
+                        <div class="file-info" id="fileInfo"></div>
+                    </div>
+
+                    <!-- Text Input -->
+                    <div class="text-input-zone">
+                        <h3>Or Paste User Stories</h3>
+                        <textarea id="textInput" placeholder="Paste your user stories here...\n\nExample:\nAs a user, I want to login to my account so that I can access my personal dashboard.\nAs an admin, I need to manage user permissions to ensure system security." rows="8"></textarea>
+                        <div class="input-actions">
+                            <button class="btn btn--primary" id="processText">Process Text</button>
+                            <button class="btn btn--outline" id="clearText">Clear</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Processing Status -->
+                <div class="processing-status" id="processingStatus" style="display: none;">
+                    <div class="status-content">
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                            <span class="progress-text" id="progressText">0%</span>
+                        </div>
+                        <p class="status-message" id="statusMessage">Initializing...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <!-- Results Header -->
+                <div class="results-header">
+                    <h2>Processing Results</h2>
+                    <div class="results-actions">
+                        <button class="btn btn--outline" id="exportJson">Export JSON</button>
+                        <button class="btn btn--outline" id="exportCsv">Export CSV</button>
+                        <button class="btn btn--secondary" id="copyResults">Copy to Clipboard</button>
+                    </div>
+                </div>
+
+                <!-- Quality Dashboard -->
+                <div class="quality-dashboard">
+                    <div class="metric-card">
+                        <h4>Stories Processed</h4>
+                        <span class="metric-value" id="storiesCount">0</span>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Avg Completeness</h4>
+                        <span class="metric-value" id="avgCompleteness">0%</span>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Quality Rating</h4>
+                        <span class="metric-value quality-rating" id="qualityRating">N/A</span>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Issues Found</h4>
+                        <span class="metric-value" id="issuesCount">0</span>
+                    </div>
+                </div>
+
+                <!-- Tabbed Results -->
+                <div class="tabs-container">
+                    <div class="tabs-nav">
+                        <button class="tab-btn active" data-tab="overview">Overview</button>
+                        <button class="tab-btn" data-tab="detailed">Detailed Analysis</button>
+                        <button class="tab-btn" data-tab="json">JSON Output</button>
+                        <button class="tab-btn" data-tab="suggestions">Suggestions</button>
+                    </div>
+
+                    <!-- Overview Tab -->
+                    <div class="tab-content active" id="overviewTab">
+                        <div class="stories-grid" id="storiesGrid">
+                            <!-- Stories will be dynamically generated -->
+                        </div>
+                    </div>
+
+                    <!-- Detailed Analysis Tab -->
+                    <div class="tab-content" id="detailedTab">
+                        <div class="detailed-results" id="detailedResults">
+                            <!-- Detailed analysis will be generated -->
+                        </div>
+                    </div>
+
+                    <!-- JSON Output Tab -->
+                    <div class="tab-content" id="jsonTab">
+                        <div class="json-output">
+                            <div class="json-header">
+                                <h4>Structured JSON Output</h4>
+                                <button class="btn btn--sm btn--outline" id="copyJson">Copy JSON</button>
+                            </div>
+                            <pre id="jsonOutput"></pre>
+                        </div>
+                    </div>
+
+                    <!-- Suggestions Tab -->
+                    <div class="tab-content" id="suggestionsTab">
+                        <div class="suggestions-content" id="suggestionsContent">
+                            <!-- Suggestions will be generated -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Error Display -->
+            <div class="error-message" id="errorMessage" style="display: none;">
+                <div class="error-content">
+                    <span class="error-icon">⚠️</span>
+                    <div class="error-text">
+                        <h4>Processing Error</h4>
+                        <p id="errorText"></p>
+                    </div>
+                    <button class="btn btn--sm btn--outline" onclick="this.parentElement.parentElement.style.display='none'">Dismiss</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Help Modal -->
+        <div class="modal" id="helpModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>User Story Extraction Guide</h3>
+                    <button class="modal-close" onclick="closeModal('helpModal')">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <h4>Supported Formats</h4>
+                    <ul>
+                        <li><strong>TXT:</strong> Plain text files with user stories</li>
+                        <li><strong>PDF:</strong> PDF documents (text extraction simulation)</li>
+                        <li><strong>DOCX:</strong> Word documents (text extraction simulation)</li>
+                    </ul>
+                    
+                    <h4>User Story Format</h4>
+                    <p>The tool recognizes these standard patterns:</p>
+                    <ul>
+                        <li>As a [actor], I want [action] so that [benefit]</li>
+                        <li>As a [actor], I need [action] to [benefit]</li>
+                        <li>As a [actor], I can [action] in order to [benefit]</li>
+                    </ul>
+                    
+                    <h4>Quality Metrics</h4>
+                    <ul>
+                        <li><strong>Completeness:</strong> Presence of WHO/WHAT/WHY components</li>
+                        <li><strong>Clarity:</strong> Absence of vague terms and passive voice</li>
+                        <li><strong>Ambiguity:</strong> Detection of unclear requirements</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2024 NLP User Story Extractor | Production Tool</p>
+                <button class="btn btn--sm btn--outline" onclick="openModal('helpModal')">Help &amp; Guide</button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Dependencies for real document extraction -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+
+    <script defer src="app.js?v=20251209"></script>
+</body>
+</html>
