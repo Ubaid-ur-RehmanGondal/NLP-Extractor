@@ -1,0 +1,708 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+
+% Remove header and footer
+\pagestyle{empty}
+
+\begin{document}
+
+\section*{Project Setup}
+
+\begin{enumerate}[label=\textbf{US-\arabic*:}]
+
+\item As a project manager, I want to create a new project with custom settings so that I can organize work according to project requirements.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the "Create Project" button opens a configuration modal.
+    \item Ensure custom settings include project name, start date, and team selection.
+    \item Confirm that the project is saved to the database upon clicking "Save".
+\end{itemize}
+
+\item As a project manager, I want to assign team members to projects so that they can start contributing to project tasks.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that a list of available team members is displayed.
+    \item Ensure multiple members can be selected at once.
+    \item Confirm that assigned members receive an email notification.
+\end{itemize}
+
+\item As a project manager, I want to define project milestones so that I can track major deliverables and deadlines.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that milestones can be added with a title and due date.
+    \item Ensure milestones appear on the project timeline view.
+    \item Confirm that completing a milestone updates the project progress bar.
+\end{itemize}
+
+\item As a project manager, I want to archive completed projects so that I can keep the project list clean and organized.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that an "Archive" option is available for completed projects.
+    \item Ensure archived projects are hidden from the active dashboard.
+    \item Confirm that archived projects can be restored if needed.
+\end{itemize}
+
+\item As a project team member, I want to view all projects I'm assigned to so that I can access the work I need to do.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the "My Projects" tab displays only assigned projects.
+    \item Ensure clicking a project opens the detailed task view.
+    \item Confirm that the list updates in real-time when assignments change.
+\end{itemize}
+
+\end{enumerate}
+
+\section*{Task Management}
+
+\begin{enumerate}[label=\textbf{US-\arabic*:}, resume]
+
+\item As a team member, I want to create tasks with clear descriptions so that everyone understands what needs to be done.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the task creation form includes a rich-text description field.
+    \item Ensure images can be embedded in the description.
+    \item Confirm that the task cannot be saved without a title.
+\end{itemize}
+
+\item As a team member, I want to assign tasks to specific team members so that accountability is clear.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that an assignee dropdown is available on every task.
+    \item Ensure only project members can be assigned.
+    \item Confirm that the assignee's avatar appears on the task card.
+\end{itemize}
+
+\item As a team member, I want to set task priorities (high, medium, low) so that the team can focus on urgent work first.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that a priority flag can be toggled between High, Medium, and Low.
+    \item Ensure High priority tasks are visually distinct (e.g., red color).
+    \item Confirm that tasks can be sorted by priority in the list view.
+\end{itemize}
+
+\item As a team member, I want to set task due dates so that deliverables are completed on time.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that a date picker is available for setting due dates.
+    \item Ensure overdue tasks are highlighted in red.
+    \item Confirm that a reminder is sent 24 hours before the due date.
+\end{itemize}
+
+\item As a team member, I want to estimate task effort in hours or story points so that I can plan resource allocation.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that a numeric field accepts hours or points.
+    \item Ensure the total effort is calculated for the sprint.
+    \item Confirm that effort can be updated as work progresses.
+\end{itemize}
+
+\end{enumerate}
+
+\section*{Status Tracking}
+
+\begin{enumerate}[label=\textbf{US-\arabic*:}, resume]
+
+\item As a team member, I want to update task status (not started, in progress, completed) so that the team knows the current state.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that dragging a task to a new column updates its status.
+    \item Ensure the status change is logged in the activity history.
+    \item Confirm that completed tasks are crossed out in the list view.
+\end{itemize}
+
+\item As a team member, I want to add progress updates to tasks so that stakeholders know what's been done.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that a comment section allows text updates.
+    \item Ensure updates are timestamped.
+    \item Confirm that the latest update is visible on the task summary.
+\end{itemize}
+
+\item As a team member, I want to log time spent on tasks so that I can track effort and improve estimation accuracy.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that a timer can be started and stopped on a task.
+    \item Ensure manual time entry is also supported.
+    \item Confirm that total time spent is displayed against the estimate.
+\end{itemize}
+
+\item As a project manager, I want to see task completion percentages so that I can identify bottlenecks.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that a progress bar shows the percentage of completed tasks.
+    \item Ensure the calculation excludes archived tasks.
+    \item Confirm that the chart updates automatically.
+\end{itemize}
+
+\item As a project manager, I want to receive notifications when task status changes so that I can stay informed.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that email alerts are sent for status changes.
+    \item Ensure users can opt-out of specific notifications.
+    \item Confirm that in-app notifications appear in the bell icon.
+\end{itemize}
+
+\end{enumerate}
+
+\section*{User Authentication \& Profile}
+
+\begin{enumerate}[label=\textbf{US-\arabic*:}, resume]
+
+\item As a new user, I want to register for an account so that I can access the system.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the registration form requires email, password, and name.
+    \item Ensure password strength validation is enforced.
+    \item Confirm that a verification email is sent upon submission.
+\end{itemize}
+
+\item As a registered user, I want to log in securely so that I can access my projects.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that valid credentials redirect to the dashboard.
+    \item Ensure invalid login attempts show an error message.
+    \item Confirm that the "Remember Me" option keeps the session active.
+\end{itemize}
+
+\item As a user, I want to reset my password so that I can regain access if I forget it.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the "Forgot Password" link sends a reset token.
+    \item Ensure the reset link expires after 1 hour.
+    \item Confirm that the new password cannot be the same as the old one.
+\end{itemize}
+
+\item As a user, I want to update my profile information so that my details are current.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that name and phone number fields are editable.
+    \item Ensure changes are reflected immediately across the app.
+    \item Confirm that email changes require re-verification.
+\end{itemize}
+
+\item As a user, I want to upload a profile picture so that my team can recognize me.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the upload accepts JPG and PNG formats.
+    \item Ensure images are cropped to a square aspect ratio.
+    \item Confirm that the avatar appears next to comments and tasks.
+\end{itemize}
+
+\item As a security-conscious user, I want to enable two-factor authentication so that my account is extra secure.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that QR code generation works for authenticator apps.
+    \item Ensure backup codes are provided during setup.
+    \item Confirm that login requires the 2FA code when enabled.
+\end{itemize}
+
+\item As a user, I want to log out of the system so that I can protect my session on shared devices.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that clicking "Logout" clears local storage tokens.
+    \item Ensure the user is redirected to the login page.
+    \item Confirm that the back button does not restore the session.
+\end{itemize}
+
+\end{enumerate}
+
+\section*{Team Collaboration}
+
+\begin{enumerate}[label=\textbf{US-\arabic*:}, resume]
+
+\item As a team member, I want to comment on tasks so that I can discuss details with my colleagues.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the comment box supports text and emojis.
+    \item Ensure comments are displayed in chronological order.
+    \item Confirm that users can edit or delete their own comments.
+\end{itemize}
+
+\item As a team member, I want to mention other users in comments so that they are notified of urgent questions.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that typing "@" triggers a user autocomplete list.
+    \item Ensure mentioned users receive a specific notification.
+    \item Confirm that the mention is clickable and links to the user profile.
+\end{itemize}
+
+\item As a project manager, I want to share a read-only link to the project so that stakeholders can view progress without editing.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that a unique public URL is generated.
+    \item Ensure the public view hides internal comments.
+    \item Confirm that the link can be revoked at any time.
+\end{itemize}
+
+\item As a team member, I want to use real-time chat so that I can communicate quickly without leaving the app.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that messages appear instantly without refreshing.
+    \item Ensure typing indicators are visible to other users.
+    \item Confirm that chat history is preserved.
+\end{itemize}
+
+\item As a project manager, I want to create team channels so that discussions are organized by topic.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that channels can be public or private.
+    \item Ensure users can join and leave channels freely.
+    \item Confirm that channel names must be unique within the project.
+\end{itemize}
+
+\item As a remote worker, I want to start a video call from a task so that I can resolve complex issues face-to-face.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the "Start Call" button opens a Jitsi or Zoom integration.
+    \item Ensure the call link is posted automatically in the task comments.
+    \item Confirm that microphone and camera permissions are requested.
+\end{itemize}
+
+\item As a team member, I want to view an activity feed so that I can see what happened while I was away.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the feed aggregates updates from all assigned projects.
+    \item Ensure updates are grouped by time (e.g., "Today", "Yesterday").
+    \item Confirm that clicking an item navigates to the relevant entity.
+\end{itemize}
+
+\item As a project manager, I want to view team capacity so that I don't overassign work.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that a chart shows hours assigned vs. available hours.
+    \item Ensure holidays and time-off are taken into account.
+    \item Confirm that overbooked members are highlighted in red.
+\end{itemize}
+
+\end{enumerate}
+
+\section*{Reporting \& Analytics}
+
+\begin{enumerate}[label=\textbf{US-\arabic*:}, resume]
+
+\item As a scrum master, I want to view a burndown chart so that I can track sprint progress.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the ideal trend line is plotted against actual progress.
+    \item Ensure the chart updates daily based on remaining effort.
+    \item Confirm that the chart can be filtered by sprint.
+\end{itemize}
+
+\item As a project manager, I want to see a velocity chart so that I can estimate future sprint capacity.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the chart displays completed story points for the last 5 sprints.
+    \item Ensure the average velocity is calculated and displayed.
+    \item Confirm that failed sprints are included in the history.
+\end{itemize}
+
+\item As a manager, I want to generate a time tracking report so that I can bill clients accurately.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the report aggregates hours by project and user.
+    \item Ensure the date range is customizable.
+    \item Confirm that billable vs. non-billable hours are distinguished.
+\end{itemize}
+
+\item As a stakeholder, I want to export reports to PDF so that I can present them in meetings.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the PDF retains the layout of charts and tables.
+    \item Ensure the company logo is included in the header.
+    \item Confirm that the file downloads automatically upon generation.
+\end{itemize}
+
+\item As a data analyst, I want to export project data to CSV so that I can perform custom analysis in Excel.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that all task fields are included as columns.
+    \item Ensure special characters are properly escaped.
+    \item Confirm that the export handles large datasets without timing out.
+\end{itemize}
+
+\item As a user, I want to customize my dashboard widgets so that I see the most relevant information.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that widgets can be dragged and dropped.
+    \item Ensure widget settings (e.g., chart type) are persistent.
+    \item Confirm that a "Reset to Default" option is available.
+\end{itemize}
+
+\item As a resource manager, I want to see a resource utilization report so that I can balance the workload.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that underutilized employees are identified.
+    \item Ensure the report covers a rolling 4-week window.
+    \item Confirm that data can be filtered by department.
+\end{itemize}
+
+\item As a product owner, I want to receive a sprint summary email so that I know the outcome of the iteration.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the email includes completed vs. incomplete tasks.
+    \item Ensure key metrics like velocity and defects are highlighted.
+    \item Confirm that the email is sent automatically when a sprint is closed.
+\end{itemize}
+
+\end{enumerate}
+
+\section*{Document Management}
+
+\begin{enumerate}[label=\textbf{US-\arabic*:}, resume]
+
+\item As a team member, I want to upload attachments to tasks so that relevant files are easily accessible.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that drag-and-drop upload is supported.
+    \item Ensure a progress bar is shown during upload.
+    \item Confirm that file size limits are enforced (e.g., max 25MB).
+\end{itemize}
+
+\item As a user, I want to preview files within the browser so that I don't have to download them.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that PDF and image previews work correctly.
+    \item Ensure a "Download" button is available in the preview modal.
+    \item Confirm that unsupported file types show a generic icon.
+\end{itemize}
+
+\item As a developer, I want version control for documents so that I can revert to previous drafts.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that uploading a file with the same name creates a new version.
+    \item Ensure version history lists author and timestamp.
+    \item Confirm that older versions can be restored as the current one.
+\end{itemize}
+
+\item As a user, I want to link documents to multiple tasks so that I don't have to upload duplicates.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that a "Link Existing File" option searches the library.
+    \item Ensure the link is bidirectional (task to file, file to task).
+    \item Confirm that deleting a link does not delete the file itself.
+\end{itemize}
+
+\item As a team member, I want to create wiki pages so that project documentation is centralized.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that a Markdown editor is provided.
+    \item Ensure pages can be organized in a hierarchy.
+    \item Confirm that a table of contents is auto-generated.
+\end{itemize}
+
+\item As a user, I want to search document contents so that I can find information quickly.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that search results include matches in file names and text content.
+    \item Ensure search terms are highlighted in the results.
+    \item Confirm that OCR is applied to uploaded images.
+\end{itemize}
+
+\item As a project manager, I want to organize files into folders so that the repository remains tidy.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that nested folders are supported.
+    \item Ensure files can be moved between folders via drag-and-drop.
+    \item Confirm that folder permissions can be restricted to specific roles.
+\end{itemize}
+
+\end{enumerate}
+
+\section*{Notifications \& Settings}
+
+\begin{enumerate}[label=\textbf{US-\arabic*:}, resume]
+
+\item As a user, I want to receive a daily email digest so that I am not overwhelmed by individual notifications.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the digest summarizes all activity from the previous 24 hours.
+    \item Ensure the email is sent at a user-configured time.
+    \item Confirm that urgent mentions are still sent immediately.
+\end{itemize}
+
+\item As a mobile user, I want push notifications so that I never miss an important update.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that notifications appear on the lock screen.
+    \item Ensure tapping the notification opens the specific task.
+    \item Confirm that notifications can be silenced during "Do Not Disturb" hours.
+\end{itemize}
+
+\item As a team lead, I want to integrate with Slack so that updates are posted to our team channel.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the integration wizard authorizes the Slack workspace.
+    \item Ensure users can map project events to specific Slack channels.
+    \item Confirm that Slack messages include links back to the task.
+\end{itemize}
+
+\item As a user, I want to customize my notification preferences so that I only receive relevant alerts.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that granular toggles exist for email, push, and in-app.
+    \item Ensure settings are saved per project.
+    \item Confirm that "Unsubscribe All" works instantly.
+\end{itemize}
+
+\item As a user, I want to mark notifications as read so that I can clear my inbox.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that clicking a notification marks it as read.
+    \item Ensure a "Mark All as Read" button is available.
+    \item Confirm that the unread badge count updates immediately.
+\end{itemize}
+
+\item As a user, I want to filter notifications so that I can focus on mentions or assignments.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that tabs exist for "All", "Mentions", and "Assigned to Me".
+    \item Ensure filters persist across sessions.
+    \item Confirm that empty states are helpful and encouraging.
+\end{itemize}
+
+\item As a desktop user, I want browser notifications so that I see updates even when the tab is in the background.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the browser permission prompt is triggered.
+    \item Ensure notifications play a subtle sound.
+    \item Confirm that clicking the notification focuses the browser tab.
+\end{itemize}
+
+\end{enumerate}
+
+\section*{Search \& Filtering}
+
+\begin{enumerate}[label=\textbf{US-\arabic*:}, resume]
+
+\item As a user, I want a global search bar so that I can find any entity in the system.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that search queries tasks, projects, users, and comments.
+    \item Ensure results are categorized by type.
+    \item Confirm that keyboard shortcut (e.g., Ctrl+K) opens the search.
+\end{itemize}
+
+\item As a user, I want to filter tasks by tag so that I can group related items.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that clicking a tag filters the current view.
+    \item Ensure multiple tags can be selected (AND/OR logic).
+    \item Confirm that the filter URL is shareable.
+\end{itemize}
+
+\item As a manager, I want to filter by assignee so that I can see individual workloads.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the assignee filter includes "Unassigned".
+    \item Ensure the filter works across list, board, and calendar views.
+    \item Confirm that the user's own avatar is a quick-filter shortcut.
+\end{itemize}
+
+\item As a power user, I want to use advanced search syntax so that I can perform complex queries.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that operators like "is:open", "due:today", and "assignee:me" work.
+    \item Ensure syntax errors show a helpful tooltip.
+    \item Confirm that autocomplete suggests valid operators.
+\end{itemize}
+
+\item As a user, I want to save search filters so that I can quickly access common views.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the "Save View" button prompts for a name.
+    \item Ensure saved filters appear in the sidebar.
+    \item Confirm that saved filters can be shared with the team.
+\end{itemize}
+
+\item As a user, I want to see my recent search history so that I can repeat queries easily.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the last 5 searches are displayed in the dropdown.
+    \item Ensure clicking a history item re-executes the search.
+    \item Confirm that history can be cleared manually.
+\end{itemize}
+
+\end{enumerate}
+
+\section*{Admin Dashboard}
+
+\begin{enumerate}[label=\textbf{US-\arabic*:}, resume]
+
+\item As an administrator, I want to manage users so that I can control access to the organization.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that admins can invite, suspend, and delete users.
+    \item Ensure bulk import from CSV is supported.
+    \item Confirm that password reset emails can be triggered manually.
+\end{itemize}
+
+\item As an admin, I want to configure roles and permissions so that security is maintained.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that custom roles can be created with specific capabilities.
+    \item Ensure permission changes take effect immediately.
+    \item Confirm that the "Admin" role cannot be deleted.
+\end{itemize}
+
+\item As an admin, I want to manage billing settings so that subscriptions are kept active.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that credit card details can be updated securely.
+    \item Ensure invoices are available for download.
+    \item Confirm that plan upgrades/downgrades are processed correctly.
+\end{itemize}
+
+\item As a compliance officer, I want to view audit logs so that I can track sensitive actions.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that logs record who, what, and when for every change.
+    \item Ensure logs cannot be modified or deleted.
+    \item Confirm that logs can be exported for external auditing.
+\end{itemize}
+
+\item As an admin, I want to check system health so that I can ensure uptime.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the dashboard shows CPU, memory, and disk usage.
+    \item Ensure alerts are triggered if thresholds are exceeded.
+    \item Confirm that database connection status is visible.
+\end{itemize}
+
+\item As a security admin, I want to whitelist IP addresses so that access is restricted to the office VPN.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that users from non-whitelisted IPs are blocked.
+    \item Ensure the admin's current IP is auto-detected.
+    \item Confirm that CIDR notation is supported for ranges.
+\end{itemize}
+
+\item As an admin, I want to configure custom fields so that tasks fit our specific workflow.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that text, number, date, and dropdown field types are available.
+    \item Ensure custom fields can be made mandatory.
+    \item Confirm that custom fields appear on the task detail view.
+\end{itemize}
+
+\end{enumerate}
+
+\section*{Mobile App Features}
+
+\begin{enumerate}[label=\textbf{US-\arabic*:}, resume]
+
+\item As a field worker, I want to view tasks offline so that I can work in areas with poor connectivity.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that data is cached locally on the device.
+    \item Ensure changes made offline are synced when connection is restored.
+    \item Confirm that a visual indicator shows offline status.
+\end{itemize}
+
+\item As a mobile user, I want to receive push notifications so that I can respond quickly on the go.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that tapping a notification deep-links to the app content.
+    \item Ensure notifications are grouped by app in the OS tray.
+    \item Confirm that badge counts are cleared upon opening the app.
+\end{itemize}
+
+\item As a user, I want a "Quick Add" widget so that I can capture ideas instantly.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the widget is accessible from the home screen.
+    \item Ensure the task is added to the "Inbox" project by default.
+    \item Confirm that voice input is supported.
+\end{itemize}
+
+\item As a user, I want dark mode so that the app is comfortable to use at night.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the theme switches automatically based on system settings.
+    \item Ensure contrast ratios meet accessibility standards.
+    \item Confirm that all icons and text remain legible.
+\end{itemize}
+
+\item As a user, I want to log in with biometrics so that access is fast and secure.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that FaceID and TouchID are supported.
+    \item Ensure a fallback to PIN or password is available.
+    \item Confirm that biometric data is not stored on the server.
+\end{itemize}
+
+\item As a user, I want to dictate notes so that I don't have to type on a small screen.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the microphone button activates speech-to-text.
+    \item Ensure punctuation commands are recognized.
+    \item Confirm that the transcribed text is editable before saving.
+\end{itemize}
+
+\item As a user, I want to upload photos from the camera so that I can document physical issues.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the app requests camera permissions.
+    \item Ensure photos can be annotated before uploading.
+    \item Confirm that images are compressed to save bandwidth.
+\end{itemize}
+
+\end{enumerate}
+
+\section*{Integrations & API}
+
+\begin{enumerate}[label=\textbf{US-\arabic*:}, resume]
+
+\item As a developer, I want to link GitHub commits to tasks so that code changes are traceable.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that including the task ID in the commit message creates a link.
+    \item Ensure the task status can be updated via commit keywords (e.g., "Fixes US-73").
+    \item Confirm that a "Development" panel shows related branches and PRs.
+\end{itemize}
+
+\item As a user, I want to sync tasks with my Google Calendar so that I can manage my time effectively.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that tasks with due dates appear as all-day events.
+    \item Ensure changes in the calendar reflect back to the task.
+    \item Confirm that private tasks are marked as "Busy".
+\end{itemize}
+
+\item As a project manager, I want to import issues from Jira so that migration is seamless.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that the import wizard maps fields correctly.
+    \item Ensure attachments and comments are preserved.
+    \item Confirm that a summary report shows success/failure counts.
+\end{itemize}
+
+\item As a developer, I want to configure webhooks so that external systems are notified of changes.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that endpoints can be tested with a "Send Ping" button.
+    \item Ensure payloads include the full event object.
+    \item Confirm that failed deliveries are retried automatically.
+\end{itemize}
+
+\item As a developer, I want to generate API tokens so that I can build custom scripts.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that tokens can be scoped to specific permissions.
+    \item Ensure tokens can be revoked individually.
+    \item Confirm that the token is only shown once upon creation.
+\end{itemize}
+
+\item As a power user, I want Zapier support so that I can automate workflows without coding.
+\begin{itemize}
+    \item Acceptance Criteria:
+    \item Verify that triggers exist for "New Task" and "Task Completed".
+    \item Ensure actions allow creating and updating tasks.
+    \item Confirm that custom fields are accessible in Zaps.
+\end{itemize}
+
+\end{enumerate}
+
+\end{document}
