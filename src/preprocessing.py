@@ -74,15 +74,34 @@ def extract_user_story_components(raw_output: str, original_story: str = "") -> 
                 break
     
     # Pattern 3: Look for acceptance criteria keywords
-    criteria_keywords = ['given', 'when', 'then', 'and', 'scenario', 'condition', 'requirement', 'must', 'should']
-    if any(keyword in raw for keyword in criteria_keywords):
-        # Extract sentences that contain these keywords
-        sentences = re.split(r'[.!?]', raw)
-        for sentence in sentences:
-            if any(keyword in sentence for keyword in criteria_keywords):
-                criteria = sentence.strip()
-                if criteria and len(criteria) > 3:
-                    result["acceptance_criteria"].append(criteria)
+    # First, try to extract explicit "Acceptance Criteria" section from the original story
+    if original_story:
+        # Normalize text to handle different bullet points and spacing
+        norm_story = original_story.replace("•", "-").replace("*", "-")
+        
+        # Look for "Acceptance Criteria:" or similar headers
+        ac_match = re.search(r'(?:acceptance\s+criteria|ac|conditions):?\s*(.*)', norm_story, re.IGNORECASE | re.DOTALL)
+        if ac_match:
+            ac_text = ac_match.group(1).strip()
+            # Split by bullet points or newlines
+            items = re.split(r'(?:\r?\n\s*-\s*|\r?\n\s*\d+\.\s*|\s+-\s+)', ac_text)
+            for item in items:
+                cleaned_item = item.strip()
+                # Filter out empty items or the header itself if captured
+                if cleaned_item and len(cleaned_item) > 3 and not re.match(r'^(?:acceptance\s+criteria|ac|conditions):?$', cleaned_item, re.IGNORECASE):
+                    result["acceptance_criteria"].append(cleaned_item)
+
+    # If no explicit section found, fall back to keyword search in raw output
+    if not result["acceptance_criteria"]:
+        criteria_keywords = ['given', 'when', 'then', 'and', 'scenario', 'condition', 'requirement', 'must', 'should']
+        if any(keyword in raw for keyword in criteria_keywords):
+            # Extract sentences that contain these keywords
+            sentences = re.split(r'[.!?]', raw)
+            for sentence in sentences:
+                if any(keyword in sentence for keyword in criteria_keywords):
+                    criteria = sentence.strip()
+                    if criteria and len(criteria) > 3:
+                        result["acceptance_criteria"].append(criteria)
     
     return result
 

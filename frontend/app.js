@@ -367,8 +367,8 @@ async callMLModel(userStoryText) {
                     const suggestions = this.generateSuggestions(limitedStories[idx], components, quality);
                     
                     return {
-                        id: `US-${String(idx + 1).padStart(3, '0')}`,
-                        story: limitedStories[idx],
+                        story_id: `US-${String(idx + 1).padStart(3, '0')}`,
+                        original_text: limitedStories[idx],
                         extracted_components: components,
                         quality_metrics: quality,
                         suggestions,
@@ -460,6 +460,10 @@ async callMLModel(userStoryText) {
                      .map(s => s.trim())
                      .filter(s => s.length > 10);
     }
+
+    // Clean up trailing story IDs/headers from the next story that might have been attached
+    // e.g. "US-2:", "Story 5:", "Task Management US-6:"
+    stories = stories.map(s => s.replace(/(?:(?:Task\s+Management\s+)?US-\d+|Story\s*\d+|\d+\.)\s*:?\s*$/i, '').trim());
     
     return stories.slice(0, this.config.maxStories);
 }
@@ -843,15 +847,19 @@ if (!components.actor && !components.action && !components.benefit) {
         
         const completenessClass = this.getCompletenessClass(story.quality_metrics.completeness_score);
         
+        // Handle both new and old property names for backward compatibility
+        const displayId = story.story_id || story.id || 'US-???';
+        const displayText = story.original_text || story.story || '';
+
         card.innerHTML = `
             <div class="story-header">
-                <span class="story-id">${story.story_id}</span>
+                <span class="story-id">${displayId}</span>
                 <span class="completeness-score ${completenessClass}">
                     ${story.quality_metrics.completeness_score}% Complete
                 </span>
             </div>
             <div class="story-original">
-                ${this.escapeHtml(story.original_text)}
+                ${this.escapeHtml(displayText)}
             </div>
             <div class="story-components">
                 <div class="component">
@@ -901,9 +909,13 @@ if (!components.actor && !components.action && !components.benefit) {
         const clarityRating = (story.quality_metrics && story.quality_metrics.clarity_rating) ? story.quality_metrics.clarity_rating : 'unknown';
         const clarityDisplay = clarityRating.charAt(0).toUpperCase() + clarityRating.slice(1);
 
+        // Handle both new and old property names
+        const displayId = story.story_id || story.id || 'US-???';
+        const displayText = story.original_text || story.story || '';
+
         section.innerHTML = `
             <div class="story-header">
-                <h4>${story.story_id}</h4>
+                <h4>${displayId}</h4>
                 <div class="quality-badges">
                     <span class="status status--${clarityRating}">
                         ${clarityDisplay}
@@ -913,7 +925,7 @@ if (!components.actor && !components.action && !components.benefit) {
             
             <div style="margin-bottom: 16px;">
                 <strong>Original Text:</strong>
-                <div class="story-original">${this.escapeHtml(story.original_text)}</div>
+                <div class="story-original">${this.escapeHtml(displayText)}</div>
             </div>
             
             <div style="margin-bottom: 16px;">
